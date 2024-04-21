@@ -277,6 +277,22 @@ class rng():
             RNs.append(self.term / self.m)
         return RNs 
 
+def LGC(a=1103515245, m=2**32, c=12345, no_sample=1, x0=0.1, repeat = True):
+    rand = []
+    x = x0
+#     rand.append(x0)
+    if repeat:
+        x = x0*m
+        for i in range(no_sample):
+            x = (a*x+c)%m
+            rand.append(x/m)
+        return rand
+
+    for i in range(no_sample):
+        x = (a*x+c)%m
+        rand.append(x/m)
+    return rand
+
 def monte_integrate(f: float,a: float,b: float,N: int,seed: int,multiplier: float,m: float,c: float):
     '''
     # Monte Carlo Integration
